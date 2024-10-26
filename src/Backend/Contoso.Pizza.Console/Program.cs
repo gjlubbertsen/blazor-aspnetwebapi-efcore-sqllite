@@ -34,14 +34,14 @@ namespace Contoso.Pizza.Console
                     Description = "This is a great sauce",
                 });
             }
-
+            
             //Display all sauces
             foreach (var sauce in sauces)
             {
                 System.Console.WriteLine($"Sauce Id: {sauce.Id}, Name: {sauce.Name}");
             }
-            System.Console.WriteLine("Press any key to close...");
-            System.Console.ReadKey();
+            
         }
     }
+    
 }

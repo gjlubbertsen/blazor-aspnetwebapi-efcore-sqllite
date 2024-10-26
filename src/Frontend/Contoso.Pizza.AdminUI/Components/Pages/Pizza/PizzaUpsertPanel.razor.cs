@@ -1,5 +1,6 @@
 ﻿using Contoso.Pizza.AdminApi.Models;
 using Contoso.Pizza.AdminUI.Services;
+using Contoso.Pizza.AdminUI.Services.Contracts;
 using Microsoft.AspNetCore.Components;
 
 namespace Contoso.Pizza.AdminUI.Components.Pages.Pizza;
@@ -7,10 +8,10 @@ namespace Contoso.Pizza.AdminUI.Components.Pages.Pizza;
 public partial class PizzaUpsertPanel
 {
     [Inject]
-    SauceService SauceService { get; set; } = default!;
+    ISauceService SauceService { get; set; } = default!;
     
     [Inject]
-    ToppingService ToppingService { get; set; } = default!;
+    IToppingService ToppingService { get; set; } = default!;
     
     [Parameter]
     public PizzaEntity Content { get; set; } = default!;

@@ -13,7 +13,7 @@ public static class EntityTypeBuilderExtensions
 
         builder.Property(s => s.Created)
             .HasColumnType("datetime2")
-            .HasDefaultValueSql("getdate()");
+            .HasDefaultValueSql("date()");
 
         builder.Property(s => s.Modified)
             .HasColumnType("datetime2");

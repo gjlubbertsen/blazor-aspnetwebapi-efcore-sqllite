@@ -12,11 +12,11 @@ public static class ServiceCollectionExtensions
         IConfiguration configuration,
         bool isProduction = true)
     {
-        var contosoPizzaDbConnectionString = configuration["ConnectionStrings:ContosoPizza"];
+        
 
         services.AddDbContext<ContosoPizzaDataContext>(options =>
         {
-            options.UseSqlServer(contosoPizzaDbConnectionString);
+           
             //If we are not in production, log to console
             if(!isProduction)
             {
