@@ -41,8 +41,15 @@ public class PizzasController : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Post([FromBody] PizzaEntity newPizza)
     {
-        var createdPizza = await _service.AddAsync(newPizza);
-        return CreatedAtAction(nameof(GetPizzaById), new { id = createdPizza.Id }, createdPizza);
+        try
+        {
+            var createdPizza = await _service.AddAsync(newPizza);
+            return CreatedAtAction(nameof(GetPizzaById), new { id = createdPizza.Id }, createdPizza);
+        }
+        catch (ArgumentException ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 
 
@@ -53,8 +60,15 @@ public class PizzasController : ControllerBase
     public async Task<IActionResult> Put(Guid id, [FromBody] PizzaEntity pizza)
     {
         pizza.Id = id;
-        var result = await _service.UpdateAsync(pizza);
-        return result == 1 ? Ok() : NotFound();
+        try
+        {
+            var result = await _service.UpdateAsync(pizza);
+            return result == 1 ? Ok() : NotFound();
+        }
+        catch (ArgumentException ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 
     // DELETE api/sauces/5

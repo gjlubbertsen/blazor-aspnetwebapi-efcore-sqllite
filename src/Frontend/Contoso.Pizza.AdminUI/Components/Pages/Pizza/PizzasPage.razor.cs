@@ -34,7 +34,17 @@ public partial class PizzasPage
         }
         var entity = result.Data as PizzaEntity;
         ShowProgressToast(nameof(OnAddNewPizzaClick), "Pizza", entity!.Name);
-        _ = await Service.AddPizzaAsync(entity!);
+
+        try
+        {
+            _ = await Service.AddPizzaAsync(entity!);
+        }
+        catch (HttpRequestException ex)
+        {
+            CloseProgressToast(nameof(OnAddNewPizzaClick));
+            ShowFailureToast("Pizza", entity!.Name, Operation.Add, ex.Message);
+            return;
+        }
         CloseProgressToast(nameof(OnAddNewPizzaClick));
         ShowSuccessToast("Pizza", entity!.Name);
         await LoadPizzas();
@@ -50,7 +60,18 @@ public partial class PizzasPage
         }
         var entity = result.Data as PizzaEntity;
         ShowProgressToast(nameof(OnEditPizzaClick), "Pizza", entity!.Name, Operation.Update);
-        await Service.UpdatePizzaAsync(entity!);
+        
+        try
+        {
+            await Service.UpdatePizzaAsync(entity!);
+        }
+        catch (HttpRequestException ex)
+        {
+            CloseProgressToast(nameof(OnEditPizzaClick));
+            ShowFailureToast("Pizza", entity!.Name, Operation.Update, ex.Message);
+            return;
+        }
+
         CloseProgressToast(nameof(OnEditPizzaClick));
         ShowSuccessToast("Pizza", entity!.Name, Operation.Update);
         await LoadPizzas();

@@ -17,7 +17,10 @@ public class PizzaService : IPizzaService
     public async Task<PizzaEntity> AddPizzaAsync(PizzaEntity entity)
     {
         var response = await _httpClient.PostAsJsonAsync(_baseUri, entity);
-        response.EnsureSuccessStatusCode();
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new HttpRequestException(await response.Content.ReadAsStringAsync());
+        }
         return (await response.Content.ReadFromJsonAsync<PizzaEntity>())!;
     }
 
@@ -37,6 +40,10 @@ public class PizzaService : IPizzaService
     {
         var updateUri = $"{_baseUri}/{entity.Id}";
         var response = await _httpClient.PutAsJsonAsync(updateUri, entity);
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new HttpRequestException(await response.Content.ReadAsStringAsync());
+        }
         response.EnsureSuccessStatusCode();
     }
 }
