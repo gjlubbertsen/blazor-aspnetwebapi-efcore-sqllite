@@ -43,6 +43,8 @@ else
         <TemplateColumn Title="Toppings" Sortable="true" Align="Align.Start">
             @string.Join(",",context.Toppings.Select(t => t.Name))
         </TemplateColumn>
+        <PropertyColumn Title="Price" Property="@(c => c!.Price)" Format="C" Sortable="true" Align=Align.Start />
+        <PropertyColumn Title="Total price" Property="@(c => CalculatePrice(c))" Sortable="true" Align=Align.Start />
         <PropertyColumn Title="Created" Property="@(c => c!.Created)" Format="MMM dd, yyyy" Sortable="true" Align=Align.Start />
         <PropertyColumn Title="Modified" Property="@(c => c!.Modified)" Format="MMM dd, yyyy" Sortable="true" Align=Align.Start />
         <TemplateColumn Title="Action">

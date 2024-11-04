@@ -18,6 +18,9 @@ public static class EntityTypeBuilderExtensions
         builder.Property(s => s.Modified)
             .HasColumnType("datetime2");
 
+        builder.Property(s => s.Price)
+            .HasColumnType("decimal(18,2)");
+
         return builder;
     }
 }

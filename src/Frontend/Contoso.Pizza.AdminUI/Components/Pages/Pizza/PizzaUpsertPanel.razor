@@ -28,6 +28,17 @@
                 </LabelTemplate>
             </FluentTextArea>
             <FluentSpacer Width="10" />
+            <FluentTextField @bind-Value="@PriceDisplay" >
+                <LabelTemplate>
+                    <FluentLabel Weight="FontWeight.Bold">
+                    <FluentStack Orientation="Orientation.Horizontal">
+                    <span>Price</span>
+                    <FluentLabel Color="Color.Error">*</FluentLabel>
+                    </FluentStack>  
+                </FluentLabel>
+                </LabelTemplate>
+            </FluentTextField>
+            <FluentSpacer Width="10" />
 
             @if (Content.Id == Guid.Empty)
             {
@@ -35,7 +46,8 @@
                               Items="_sauces"
                               OptionValue="@(s => s.Id.ToString())"
                               OptionText="@(s => s.Name)"
-                              @bind-SelectedOption="@Content.Sauce">
+                              @bind-SelectedOption="@Content.Sauce"
+                              @onchange="@SauceSelected">
                     <LabelTemplate>
                         <FluentLabel Weight="FontWeight.Bold">
                             Sauce
@@ -58,6 +70,11 @@
                         </FluentCheckbox>
                     }
                 </FluentStack>
+
+                <FluentSpacer Width="10" />
+                <FluentLabel Weight="FontWeight.Bold">Total price</FluentLabel>
+               
+
                 @string.Join(", ", Content.Toppings!.Select(t => t.Name))
             }
             @if (Content.Id != Guid.Empty)
@@ -94,6 +111,8 @@
                     </FluentStack>
                 }
             }
+            <FluentSpacer Width="10" />
+            <FluentLabel>@_price.ToString("0.00")</FluentLabel>
         </FluentStack>
     }
 </FluentDialogBody>

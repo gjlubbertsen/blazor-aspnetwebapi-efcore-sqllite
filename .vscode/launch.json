@@ -7,7 +7,7 @@
         {
             "name": "C#: Backend Debug",
             "type": "dotnet",
-            "request": "launch",
+            "request": "launch",            
             "projectPath": "${workspaceFolder}/src/Backend/Contoso.Pizza.AdminApi.MVC/Contoso.Pizza.AdminApi.MVC.csproj"
         },
         {
@@ -20,6 +20,7 @@
     "compounds": [
         {
             "name": "Start Full Stack",
+            "preLaunchTask": "build",
             "configurations": ["C#: Backend Debug", "C#: Frontend Debug"]
         }
     ]

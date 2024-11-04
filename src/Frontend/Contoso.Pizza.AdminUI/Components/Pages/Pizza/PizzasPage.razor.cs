@@ -50,6 +50,20 @@ public partial class PizzasPage
         await LoadPizzas();
     }
 
+    private string CalculatePrice(PizzaEntity pizza)
+    {
+        var price = pizza.Price;
+        if (pizza.Sauce != null)
+        {
+            price += pizza.Sauce.Price;
+        }
+        if (pizza.Toppings != null)
+        {
+            price += pizza.Toppings.Select(t => t.Price).Sum();
+        }
+        return price.ToString("0.00");
+    }
+
     private async Task OnEditPizzaClick(PizzaEntity pizza)
     {
         var panelTitle = $"Edit pizza";

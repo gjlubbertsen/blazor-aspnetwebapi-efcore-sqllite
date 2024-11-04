@@ -14,14 +14,14 @@ public static class DbInitializer
             return;
         }
 
-        var pepperoniTopping = new Topping { Name = "Pepperoni", Calories = 130 };
-        var sausageTopping = new Topping { Name = "Sausage", Calories = 100 };
-        var hamTopping = new Topping { Name = "Ham", Calories = 70 };
-        var chickenTopping = new Topping { Name = "Chicken", Calories = 50 };
-        var pineappleTopping = new Topping { Name = "Pineapple", Calories = 75 };
+        var pepperoniTopping = new Topping { Name = "Pepperoni", Calories = 130, Price = 3.00m};
+        var sausageTopping = new Topping { Name = "Sausage", Calories = 100, Price = 3.00m };
+        var hamTopping = new Topping { Name = "Ham", Calories = 70, Price = 3.00m };
+        var chickenTopping = new Topping { Name = "Chicken", Calories = 50, Price = 3.50m };
+        var pineappleTopping = new Topping { Name = "Pineapple", Calories = 75, Price = 2.00m };
 
-        var tomatoSauce = new Sauce { Name = "Tomato", IsVegan = true };
-        var alfredoSauce = new Sauce { Name = "Alfredo", IsVegan = false };
+        var tomatoSauce = new Sauce { Name = "Tomato", IsVegan = true, Price = 1.00m };
+        var alfredoSauce = new Sauce { Name = "Alfredo", IsVegan = false, Price = 2.00m };
 
         var pizzas = new DM.Pizza[]
             {
@@ -35,7 +35,8 @@ public static class DbInitializer
                                 sausageTopping,
                                 hamTopping,
                                 chickenTopping
-                            }
+                            },
+                        Price = 15.00m
                     },
                 new DM.Pizza
                     {
@@ -45,7 +46,8 @@ public static class DbInitializer
                             {
                                 pineappleTopping,
                                 hamTopping
-                            }
+                            },
+                        Price = 12.00m
                     },
                 new DM.Pizza
                     {
@@ -54,7 +56,8 @@ public static class DbInitializer
                         Toppings = new List<Topping>
                             {
                                 chickenTopping
-                            }
+                            },
+                        Price = 11.00m
                         }
             };
 

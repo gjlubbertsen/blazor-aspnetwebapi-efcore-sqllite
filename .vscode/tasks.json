@@ -1,0 +1,27 @@
+{
+    "version": "2.0.0",
+    "command": "dotnet",
+    "type": "shell",
+    "options": {
+        "shell": {
+            "executable": "dotnet"
+        }
+    },
+    "args": [],
+
+    "tasks": [
+      {
+        "label": "build",
+        "args": ["build", 
+        "${workspaceFolder}/src/Contoso.Pizza.sln"],
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "presentation": {
+          "reveal": "silent"
+        },
+        "problemMatcher": "$msCompile"
+      }
+   ]
+}

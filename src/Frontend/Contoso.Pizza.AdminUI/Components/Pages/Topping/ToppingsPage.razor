@@ -40,6 +40,7 @@ else
             <span @onclick=@(() => OnEditToppingClick(context)) style="font-weight:bold;text-decoration:underline;cursor:pointer">@context.Name</span>
         </TemplateColumn>
         <PropertyColumn Title="Calories" Property="@(c => c!.Calories)" Sortable="true" Align=Align.Start />
+        <PropertyColumn Title="Price" Property="@(c => c!.Price)" Format="C" Sortable="true" Align=Align.Start />
         <PropertyColumn Title="Created" Property="@(c => c!.Created)" Format="MMM dd, yyyy" Sortable="true" Align=Align.Start />
         <PropertyColumn Title="Modified" Property="@(c => c!.Modified)" Format="MMM dd, yyyy" Sortable="true" Align=Align.Start />
         <TemplateColumn Title="Action">

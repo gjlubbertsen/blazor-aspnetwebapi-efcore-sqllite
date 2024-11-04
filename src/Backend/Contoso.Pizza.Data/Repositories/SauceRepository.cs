@@ -41,6 +41,7 @@ public class SauceRepository : ISauceRepository
                                                 .SetProperty(s => s.Name, sauce.Name)
                                                 .SetProperty(s => s.Description, sauce.Description)
                                                 .SetProperty(s => s.IsVegan, sauce.IsVegan)
+                                                .SetProperty(s => s.Price, sauce.Price)
                                                 .SetProperty(s => s.Modified, DateTime.UtcNow)
                                             );
         return result;

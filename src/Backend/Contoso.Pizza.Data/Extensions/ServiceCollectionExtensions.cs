@@ -12,11 +12,8 @@ public static class ServiceCollectionExtensions
         IConfiguration configuration,
         bool isProduction = true)
     {
-        
-
         services.AddDbContext<ContosoPizzaDataContext>(options =>
         {
-           
             //If we are not in production, log to console
             if(!isProduction)
             {

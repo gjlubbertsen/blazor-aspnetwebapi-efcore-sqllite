@@ -66,6 +66,7 @@ public class PizzaRepository : IPizzaRepository
         storedPizza.Name = pizza.Name;
         storedPizza.Description = pizza.Description;
         storedPizza.SauceId = pizza.SauceId;
+        storedPizza.Price = pizza.Price;
         storedPizza.Modified = DateTime.UtcNow;
 
         storedPizza.Toppings.RemoveAll(topping => !pizza.Toppings.Any(p => p.Id == topping.Id));

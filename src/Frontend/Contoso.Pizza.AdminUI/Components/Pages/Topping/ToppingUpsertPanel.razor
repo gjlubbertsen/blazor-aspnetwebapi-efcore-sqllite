@@ -28,6 +28,18 @@
                 </FluentLabel>
             </LabelTemplate>
         </FluentNumberField>
+         <FluentSpacer Width="10" />
+        <FluentTextField @bind-Value="@PriceDisplay" >
+            <LabelTemplate>
+                <FluentLabel Weight="FontWeight.Bold">
+                <FluentStack Orientation="Orientation.Horizontal">
+                <span>Price</span>
+                <FluentLabel Color="Color.Error">*</FluentLabel>
+                </FluentStack>  
+            </FluentLabel>
+            </LabelTemplate>
+        </FluentTextField>
+        
         @if (Content.Id != Guid.Empty)
         {
             <FluentSpacer Width="10" />
@@ -51,4 +63,16 @@
 @code {
     [Parameter]
     public ToppingEntity Content { get; set; } = default!;
+
+    public string PriceDisplay
+    {
+        get => Content.Price.ToString("0.00");
+        set
+        {
+            if (Decimal.TryParse(value, out var number))
+            {
+                Content.Price = Math.Round(number, 2);
+            }
+        }
+    }
 }

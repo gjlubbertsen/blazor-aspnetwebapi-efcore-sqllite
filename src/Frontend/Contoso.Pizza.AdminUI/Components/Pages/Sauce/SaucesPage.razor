@@ -41,8 +41,10 @@ else
             <span @onclick=@(() => OnEditSauceClick(context)) style="font-weight:bold;text-decoration:underline;cursor:pointer">@context.Name</span>
         </TemplateColumn>
         <PropertyColumn Title="Vegan" Property="@(c => c!.IsVegan ? "Yes" : "No")" Sortable="true" Align=Align.Start />
+        <PropertyColumn Title="Price" Property="@(c => c!.Price)" Format="C" Sortable="true" Align=Align.Start />
         <PropertyColumn Title="Created" Property="@(c => c!.Created)" Format="MMM dd, yyyy" Sortable="true" Align=Align.Start />
         <PropertyColumn Title="Modified" Property="@(c => c!.Modified)" Format="MMM dd, yyyy" Sortable="true" Align=Align.Start />
+        
         <TemplateColumn Title="Action">
             <FluentIcon Value="@(new Icons.Regular.Size20.Delete())" Title="Delete sauce"
                         Color="Color.Error" Style="cursor:pointer"

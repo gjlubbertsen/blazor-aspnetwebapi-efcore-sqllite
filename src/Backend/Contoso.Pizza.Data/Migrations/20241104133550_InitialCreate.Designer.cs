@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Contoso.Pizza.Data.Migrations
 {
     [DbContext(typeof(ContosoPizzaDataContext))]
-    [Migration("20241026070851_InitialCreate")]
+    [Migration("20241104133550_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -41,6 +41,9 @@ namespace Contoso.Pizza.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<Guid>("SauceId")
                         .HasColumnType("TEXT");
 
@@ -67,6 +70,9 @@ namespace Contoso.Pizza.Data.Migrations
 
                     b.Property<Guid>("PizzaId")
                         .HasColumnType("TEXT");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<Guid>("ToppingId")
                         .HasColumnType("TEXT");
@@ -104,6 +110,9 @@ namespace Contoso.Pizza.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Sauces", (string)null);
@@ -133,6 +142,9 @@ namespace Contoso.Pizza.Data.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 

@@ -42,6 +42,7 @@ public class ToppingRepository : IToppingRepository
                                                     .SetProperty(t => t.Name, topping.Name)
                                                     .SetProperty(t => t.Description, topping.Description)
                                                     .SetProperty(t => t.Calories, topping.Calories)
+                                                    .SetProperty(s => s.Price, topping.Price)
                                                     .SetProperty(t => t.Modified, DateTime.UtcNow)
                                               );
         return result;
