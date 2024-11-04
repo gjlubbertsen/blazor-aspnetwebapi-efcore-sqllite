@@ -10,6 +10,9 @@ public partial class PizzasPage
     [Inject]
     public required IPizzaService Service { get; set; }
 
+    [Inject]
+    IPriceCalculatorService PriceCalculator { get; set; } = default!;
+
     private IQueryable<PizzaEntity>? _pizzas;
 
     private IDialogReference? _dialog;
@@ -52,16 +55,7 @@ public partial class PizzasPage
 
     private string CalculatePrice(PizzaEntity pizza)
     {
-        var price = pizza.Price;
-        if (pizza.Sauce != null)
-        {
-            price += pizza.Sauce.Price;
-        }
-        if (pizza.Toppings != null)
-        {
-            price += pizza.Toppings.Select(t => t.Price).Sum();
-        }
-        return price.ToString("0.00");
+        return PriceCalculator.CalculatePrice(pizza).ToString("0.00");
     }
 
     private async Task OnEditPizzaClick(PizzaEntity pizza)
@@ -70,6 +64,7 @@ public partial class PizzasPage
         var result = await ShowPanel(panelTitle, pizza, false);
         if (result.Cancelled)
         {
+            await LoadPizzas();
             return;
         }
         var entity = result.Data as PizzaEntity;

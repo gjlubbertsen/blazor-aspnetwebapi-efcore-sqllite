@@ -1,4 +1,5 @@
-﻿using Contoso.Pizza.AdminUI.Services.Contracts;
+﻿using Contoso.Pizza.AdminApi.Models;
+using Contoso.Pizza.AdminUI.Services.Contracts;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -16,6 +17,7 @@ public static class ServiceCollectionExtensions
         services.AddScoped<ISauceService, SauceService>();
         services.AddScoped<IToppingService, ToppingService>();
         services.AddScoped<IPizzaService, PizzaService>();
+        services.AddSingleton<IPriceCalculatorService, PriceCalculatorService>();
         return services;
     }
 }

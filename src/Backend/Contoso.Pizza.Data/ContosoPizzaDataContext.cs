@@ -2,9 +2,10 @@
 using Contoso.Pizza.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.Extensions.Logging;
 using DM = Contoso.Pizza.Data.Models;
-namespace Contoso.Pizza.Data;
 
+namespace Contoso.Pizza.Data;
 
 
 public class ContosoPizzaDataContext : DbContext , IDesignTimeDbContextFactory<ContosoPizzaDataContext> 
@@ -22,7 +23,7 @@ public class ContosoPizzaDataContext : DbContext , IDesignTimeDbContextFactory<C
     }
 
     public ContosoPizzaDataContext(DbContextOptions<ContosoPizzaDataContext> options) 
-        : base(options) { 
+        : base(options) {       
             DbPath = GetDbPath();
             Console.WriteLine($"DbPath: {DbPath}");
         }

@@ -12,6 +12,9 @@ public partial class PizzaUpsertPanel
     
     [Inject]
     IToppingService ToppingService { get; set; } = default!;
+
+    [Inject]
+    IPriceCalculatorService PriceCalculator { get; set; } = default!;
     
     [Parameter]
     public PizzaEntity Content { get; set; } = default!;
@@ -33,15 +36,7 @@ public partial class PizzaUpsertPanel
 
     private void CalculatePrice()
     {
-        _price = Content.Price;
-        if (Content.Sauce != null)
-        {
-            _price += Content.Sauce.Price;
-        }
-        if (Content.Toppings != null)
-        {
-            _price += Content.Toppings.Select( t => t.Price).Sum();
-        }
+        _price = PriceCalculator.CalculatePrice(Content);
     }
 
     protected void OnToppingSelected(ToppingEntity item, bool selected)
