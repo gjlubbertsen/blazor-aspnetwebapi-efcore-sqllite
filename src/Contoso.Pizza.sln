@@ -29,6 +29,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{4E61F8A1-6
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contoso.Pizza.AdminUI.Services", "Frontend\Contoso.Pizza.AdminUI.Services\Contoso.Pizza.AdminUI.Services.csproj", "{6429C3EC-75B5-48B8-8570-C9B968404324}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{9C059AB7-8F41-4C25-A8C2-ABB533BA7D10}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contoso.Pizza.Data.Tests", "Backend\Contoso.Pizza.Data.Tests\Contoso.Pizza.Data.Tests.csproj", "{D510515F-0B86-4E72-8BCE-28D178EA0C28}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +75,10 @@ Global
 		{6429C3EC-75B5-48B8-8570-C9B968404324}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6429C3EC-75B5-48B8-8570-C9B968404324}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6429C3EC-75B5-48B8-8570-C9B968404324}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D510515F-0B86-4E72-8BCE-28D178EA0C28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D510515F-0B86-4E72-8BCE-28D178EA0C28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D510515F-0B86-4E72-8BCE-28D178EA0C28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D510515F-0B86-4E72-8BCE-28D178EA0C28}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -87,6 +95,8 @@ Global
 		{617DDB77-9F87-49B3-8C61-48D78625D96F} = {03225E75-120E-4ECE-9712-AB359A511BEF}
 		{4E61F8A1-61B7-4228-8B96-EEAAD0ACF97E} = {03225E75-120E-4ECE-9712-AB359A511BEF}
 		{6429C3EC-75B5-48B8-8570-C9B968404324} = {28D8C81F-8FC5-4FCC-A786-830818DFD80F}
+		{9C059AB7-8F41-4C25-A8C2-ABB533BA7D10} = {03225E75-120E-4ECE-9712-AB359A511BEF}
+		{D510515F-0B86-4E72-8BCE-28D178EA0C28} = {9C059AB7-8F41-4C25-A8C2-ABB533BA7D10}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {41FBC7CD-53B2-4C0F-ADAC-34EFEE49A663}
