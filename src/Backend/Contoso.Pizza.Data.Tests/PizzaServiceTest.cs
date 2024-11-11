@@ -10,7 +10,7 @@ namespace Contoso.Pizza.AdminApi.Models;
 [TestFixture]
 public class PizzaServiceTest
 {
-     private IPriceCalculatorService _priceCalculatorService = default!;
+    private IPriceCalculatorService _priceCalculatorService = default!;
     private IPizzaRepository _repo = default!;
     private PizzaValidator _sut = default!;
 
@@ -42,6 +42,6 @@ public class PizzaServiceTest
             Toppings = [new () { Name = "A", Price = 2 }]
         });
         errors.Should().Contain("Pizza name must be unique.");
-    }
+   }
 }
 
