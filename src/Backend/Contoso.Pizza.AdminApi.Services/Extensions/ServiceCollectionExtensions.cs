@@ -19,6 +19,7 @@ namespace Contoso.Pizza.AdminApi.Services.Extensions
             services.AddScoped<IToppingService, ToppingService>();
             services.AddSingleton(s => TimeProvider.System);
             services.AddSingleton<IPriceCalculatorService, PriceCalculatorService>();
+            services.AddScoped<IPizzaValidator, PizzaValidator>();
             services.AddScoped<IPizzaService, PizzaService>();
             return services;
         }
