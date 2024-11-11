@@ -1,6 +1,5 @@
 namespace Contoso.Pizza.AdminApi.Models
 {
-
     public interface IPriceCalculatorService
     {
         decimal CalculatePrice(PizzaEntity pizza);
@@ -8,8 +7,16 @@ namespace Contoso.Pizza.AdminApi.Models
 
     public class PriceCalculatorService : IPriceCalculatorService
     {
+        private readonly TimeProvider _timeProvider;
+
+        public PriceCalculatorService(TimeProvider timeProvider)
+        {
+            _timeProvider = timeProvider;
+        }
+
         public decimal CalculatePrice(PizzaEntity pizza)
         {
+            var orderDate = _timeProvider.GetUtcNow();
             var price = pizza.Price;
 
             // Add sauce price
@@ -43,6 +50,11 @@ namespace Contoso.Pizza.AdminApi.Models
             {
                 price *= 0.9m; // 10% discount for total price above 18
             }
+
+            // if (orderDate.Month == 11)
+            // {
+            //     price *= 0.8m; // 20% in November
+            // }
 
             // Ensure minimum price
             if (price < 10.0m)

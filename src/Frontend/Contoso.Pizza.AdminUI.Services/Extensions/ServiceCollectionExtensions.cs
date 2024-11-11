@@ -17,6 +17,7 @@ public static class ServiceCollectionExtensions
         services.AddScoped<ISauceService, SauceService>();
         services.AddScoped<IToppingService, ToppingService>();
         services.AddScoped<IPizzaService, PizzaService>();
+        services.AddSingleton(s => TimeProvider.System);
         services.AddSingleton<IPriceCalculatorService, PriceCalculatorService>();
         return services;
     }
