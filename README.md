@@ -3,7 +3,8 @@
 Deze solution is bedoelt om te laten zien hoe je unit tests kan schrijven in C#.
 
 ## Applicatie
-Dit is in een voorbeeld app die opgestart kan worden door in vscode de task `Start Full Stack` te runnen.
+Clone de repo en open `testing-sample.code-workspace`.
+Open de voorbeeld app door in vscode de task `Start Full Stack` te runnen.
 
 <img src="./assets/start-full.png" width="600px">
 
@@ -12,17 +13,17 @@ Home Page
 
 <img src="./assets/home.png" width="600px">
 
-Sauce Listing
+Saus lijst pagina
 
 <img src="./assets/pizzas-listing.png" width="600px">
 
-Pizza Upsert
-
-<img src="./assets/pizza-upsert.png" width="600px">
-
-Sauce Delete
+Saus verwijderen
 
 <img src="./assets/sauce-delete.png" width="600px">
+
+Pizza invoer en update
+
+<img src="./assets/pizza-upsert.png" width="600px">
 
 # Credits go to:
 [https://github.com/lohithgn/blazor-aspnetwebapi-efcore-sample]
@@ -38,20 +39,22 @@ CalculatePrice_WithBasicPizza_ReturnsMinimumAmount
 
 # Unit Testing
 
-## Taak1 - Unit Tests schrijven voor de PriceCalculatorService
-Open de PriceCalculatorService en kijk naar de business logic die erin zit. Deze zou je met de hand vanuit de UI kunnen testen, maar dat is niet schaalbaar. Daarom gaan we unit tests schrijven.
+## Taak 1 - Unit Tests schrijven voor de PriceCalculatorService
+Open de `PriceCalculatorService` en kijk naar de business logic die erin zit. Deze zou je met de hand vanuit de UI kunnen testen, maar dat is niet schaalbaar. 
+Daarom gaan je het automatiseren door unit tests te schrijven.
 * In de file `PriceCalculatorServiceTests.cs` staat de setup voor de tests. 
 
 <img src="./assets/run-tests.png" width="400px">
 
 ## Taak2 - Sesonal Discount
-In PriceCalculatorService.cs enable de seasonal discount. 
+In `PriceCalculatorService.cs` zet je het stuk voor de seasonal discount aan: 
 
 <img src="./assets/enable-seasonal.png" width="700px">
 
 Voeg een nieuwe test toe die kijkt of de seasonal discount werkt. 
 De seasonal discount is 20% korting op de prijs van de pizza in november. 
-```csharp	
+```csharp
+    // gebruik de FakeTimeProvider om tijdens de test de datum aan te passen.
     FakeTimeProvider fakeTimeProvider = new();
     fakeTimeProvider.SetUtcNow(new DateTimeOffset(new DateTime(2024, 11, 15)));
 ```
