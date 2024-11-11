@@ -1,4 +1,5 @@
-﻿using Contoso.Pizza.AdminApi.Services.Contracts;
+﻿using Contoso.Pizza.AdminApi.Models;
+using Contoso.Pizza.AdminApi.Services.Contracts;
 using Contoso.Pizza.Data.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,6 +17,8 @@ namespace Contoso.Pizza.AdminApi.Services.Extensions
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddScoped<ISauceService, SauceService>();
             services.AddScoped<IToppingService, ToppingService>();
+            services.AddSingleton(s => TimeProvider.System);
+            services.AddSingleton<IPriceCalculatorService, PriceCalculatorService>();
             services.AddScoped<IPizzaService, PizzaService>();
             return services;
         }

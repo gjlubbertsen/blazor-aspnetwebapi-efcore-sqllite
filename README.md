@@ -25,6 +25,15 @@ Sauce Delete
 # Credits go to:
 [https://github.com/lohithgn/blazor-aspnetwebapi-efcore-sample]
 
+# Test naamgeving
+
+Houd de volgende naamgeving aan voor de tests:
+
+CalculatePrice_WithBasicPizza_ReturnsMinimumAmount
+
+[MethodName] _ [Scenario] _ [ExpectedBehaviour]
+
+
 # Unit Testing
 
 ## Taak1 - Unit Tests schrijven voor de PriceCalculatorService
@@ -41,6 +50,32 @@ In PriceCalculatorService.cs enable de seasonal discount.
 Voeg een nieuwe test toe die kijkt of de seasonal discount werkt. 
 De seasonal discount is 20% korting op de prijs van de pizza in november. 
 ```csharp	
-    FakeTimeProvider fake = new();
-    fake.SetUtcNow(new DateTimeOffset(new DateTime(2004, 8, 17)));
+    FakeTimeProvider fakeTimeProvider = new();
+    fakeTimeProvider.SetUtcNow(new DateTimeOffset(new DateTime(2024, 11, 15)));
 ```
+
+## Taak3 - Refactor
+
+In `PizzaService.cs` is een `ValidatePizza` methode. Deze valideert e.e.a. over de pizza. 
+Hoe krijg je deze methode getest? Hoeveel van de dependencies zijn nodig om de methode te testen?
+
+Refactor de codebase en schrijf unit tests de `ValidatePizza` methode.
+
+### Hint 1 
+Refactor deze methode naar een nieuwe class `PizzaValidator`.
+
+### Hint 2
+Gebruik FakeItEasy om de dependencies te mocken. 
+```csharp
+    A.CallTo(() => _priceCalculatorService.CalculatePrice(A<PizzaEntity>._)).Returns(10);
+```
+### Hint 3 
+Doordat de namespace ook `Pizza` heeft is het lastig om de pizza class te gebruiken.
+```csharp
+using DM = Contoso.Pizza.Data.Models;
+
+new DM.Pizza { Name = "Test Pizza", Price = 2,Sauce = new() { Name = "Sauce" } };
+
+``` 
+
+

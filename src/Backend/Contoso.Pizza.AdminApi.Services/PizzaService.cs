@@ -8,11 +8,13 @@ namespace Contoso.Pizza.AdminApi.Services;
 
 public class PizzaService : IPizzaService
 {
+    private readonly IPriceCalculatorService _priceCalculatorService;
     private readonly IPizzaRepository _repository;
     private readonly IMapper _mapper;
 
-    public PizzaService(IPizzaRepository repository, IMapper mapper)
+    public PizzaService(IPriceCalculatorService priceCalculatorService, IPizzaRepository repository, IMapper mapper)
     {
+        _priceCalculatorService = priceCalculatorService;
         _repository = repository;
         _mapper = mapper;
     }
@@ -31,7 +33,8 @@ public class PizzaService : IPizzaService
 
     public async Task<PizzaEntity> AddAsync(PizzaEntity entity)
     {
-        if (!IsValidPizza(entity, out var validationErrors))
+       var validationErrors = await IsValidPizza(entity);
+        if (validationErrors.Count != 0)
         {
             throw new ArgumentException(string.Join("; ", validationErrors));
         }
@@ -42,7 +45,8 @@ public class PizzaService : IPizzaService
 
     public async Task<int> UpdateAsync(PizzaEntity entity)
     {
-        if (!IsValidPizza(entity, out var validationErrors))
+        var validationErrors = await IsValidPizza(entity);
+        if (validationErrors.Count != 0)
         {
             throw new ArgumentException(string.Join("; ", validationErrors));
         }
@@ -55,38 +59,33 @@ public class PizzaService : IPizzaService
         return await _repository.DeleteAsync(id);
     }
 
+    private async Task<List<string>> IsValidPizza(PizzaEntity pizza)
+    {
+        var validationErrors = new List<string>();
 
-     private bool IsValidPizza(PizzaEntity pizza, out List<string> validationErrors)
+        if (string.IsNullOrWhiteSpace(pizza.Name))
         {
-            validationErrors = new List<string>();
-
-            if (string.IsNullOrWhiteSpace(pizza.Name))
-            {
-                validationErrors.Add("Pizza name cannot be empty.");
-            }
-
-            if (pizza.Toppings == null || !pizza.Toppings.Any())
-            {
-                validationErrors.Add("Pizza must have at least one topping.");
-            }
-
-            /*var totalPrice = pizza.Sauce?.Price ?? 0;
-            foreach (var topping in pizza.Toppings)
-            {
-                totalPrice += topping.Price;
-            }
-
-            if (totalPrice < 5 || totalPrice > 50)
-            {
-                validationErrors.Add("Total price of the pizza must be between $5 and $50.");
-            }*/
-
-            var existingPizzas = _repository.GetAllAsync().Result;
-            if (existingPizzas.Any(p => p.Name.Equals(pizza.Name, StringComparison.OrdinalIgnoreCase)))
-            {
-                validationErrors.Add("Pizza name must be unique.");
-            }
-
-            return !validationErrors.Any();
+            validationErrors.Add("Pizza name cannot be empty.");
         }
+
+        if (pizza.Toppings == null || !pizza.Toppings.Any())
+        {
+            validationErrors.Add("Pizza must have at least one topping.");
+        }
+
+        var totalPrice = _priceCalculatorService.CalculatePrice(pizza);
+
+        if (totalPrice < 5 || totalPrice > 50)
+        {
+            validationErrors.Add("Total price of the pizza must be between $5 and $50.");
+        }
+
+        var existingPizzas = await _repository.GetAllAsync();
+        if (existingPizzas.Any(p => p.Name.Equals(pizza.Name, StringComparison.OrdinalIgnoreCase)))
+        {
+            validationErrors.Add("Pizza name must be unique.");
+        }
+
+        return validationErrors;
+    }
 }
