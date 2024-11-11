@@ -13,17 +13,17 @@ Home Page
 
 <img src="./assets/home.png" width="600px">
 
-Saus lijst pagina
+Pizza lijst pagina
 
 <img src="./assets/pizzas-listing.png" width="600px">
-
-Saus verwijderen
-
-<img src="./assets/sauce-delete.png" width="600px">
 
 Pizza invoer en update
 
 <img src="./assets/pizza-upsert.png" width="600px">
+
+Saus verwijderen
+
+<img src="./assets/sauce-delete.png" width="600px">
 
 # Credits go to:
 [https://github.com/lohithgn/blazor-aspnetwebapi-efcore-sample]
