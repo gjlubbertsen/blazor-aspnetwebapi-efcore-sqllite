@@ -1,5 +1,4 @@
-﻿using FakeItEasy;
-using FluentAssertions;
+﻿using FluentAssertions;
 using NUnit.Framework;
 using Microsoft.Extensions.Time.Testing;
 
