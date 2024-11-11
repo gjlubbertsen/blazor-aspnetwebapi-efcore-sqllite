@@ -89,4 +89,4 @@ https://github.com/gjlubbertsen/unit-testing-by-example/pull/2/files
 
 Deze voegt de `PizzaValidator` toe en een volledige tests:
 
-https://github.com/gjlubbertsen/unit-testing-by-example/pull/2/files
+https://github.com/gjlubbertsen/unit-testing-by-example/pull/1/files
