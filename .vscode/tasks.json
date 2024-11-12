@@ -8,12 +8,10 @@
         }
     },
     "args": [],
-
     "tasks": [
       {
         "label": "build",
-        "args": ["build", 
-        "${workspaceFolder}/src/Contoso.Pizza.sln"],
+        "args": ["build", "${workspaceFolder}/src/Contoso.Pizza.sln"],
         "group": {
           "kind": "build",
           "isDefault": true

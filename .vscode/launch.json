@@ -5,6 +5,41 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "C#: Backend swagger",
+            "type": "coreclr",
+            "request": "launch",
+            // If you have changed target frameworks, make sure to update the program path.
+            "program": "${workspaceFolder}/src/Backend/Contoso.Pizza.AdminApi.MVC/bin/Debug/net8.0/Contoso.Pizza.AdminApi.MVC.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/src/Backend/Contoso.Pizza.AdminApi.MVC",
+            "stopAtEntry": false,
+            // "serverReadyAction": {
+            //     "action": "openExternally",
+            //     "pattern": "\\bNow listening on:\\s+(http?://\\S+)",
+            //     "uriFormat": "%s/swagger/index.html"
+            // },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            }
+        },
+        {
+            "name": "C#: Frontend Run",
+            "type": "coreclr",
+            "request": "launch",
+            // If you have changed target frameworks, make sure to update the program path.
+            "program": "${workspaceFolder}/src/Frontend/Contoso.Pizza.AdminUI/bin/Debug/net8.0/Contoso.Pizza.AdminUI.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/src/Frontend/Contoso.Pizza.AdminUI",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(http?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            }
+        },
+        {
             "name": "C#: Backend Debug",
             "type": "dotnet",
             "request": "launch",            
@@ -21,7 +56,8 @@
         {
             "name": "Start Full Stack",
             "preLaunchTask": "build",
-            "configurations": ["C#: Backend Debug", "C#: Frontend Debug"]
+            "stopAll": true,
+            "configurations": ["C#: Backend swagger", "C#: Frontend Run"]
         }
     ]
 
